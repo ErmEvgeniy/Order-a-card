@@ -28,7 +28,7 @@ public class CallbackTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+
     }
 
 
@@ -46,7 +46,7 @@ public class CallbackTest {
         elements.get(1).sendKeys("+79270000000");
         driver.findElement(By.className("checkbox__box")).click();
         driver.findElement(By.className("button")).click();
-        String text = driver.findElement(By.className("alert-success")).getText();
+        String text = driver.findElement(By.className("[data-test-id=order-success]")).getText();
         assertEquals("Ваша заявка успешно отправлена!", text.trim());
     }
 
@@ -54,13 +54,12 @@ public class CallbackTest {
     void shouldTestV2() {
         driver.get("http://localhost:9999");
         WebElement form = driver.findElement(By.cssSelector("[data-test-id=callback-form]"));
-        driver.findElement(By.cssSelector("[type='text']")).sendKeys("Василий");
-        driver.findElement(By.cssSelector("[type = 'tel']")).sendKeys("+79270000000");
-        driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
-        driver.findElement(By.cssSelector("[data-test-id=submit]")).click();
-        String text = driver.findElement(By.className("alert-success")).getText();
-        assertEquals("Ваша заявка успешно отправлена!", text.trim());
-    }
-
+        form.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Василий");
+        form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
+        form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
+        form.findElement(By.cssSelector("[data-test-id=submit]")).click();
+       String text = driver.findElement(By.className("[data-test-id=order-success]")).getText();
+       assertEquals("Ваша заявка успешно отправлена!", text.trim());
+     }
 }
 
