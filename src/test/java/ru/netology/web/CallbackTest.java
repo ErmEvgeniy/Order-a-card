@@ -24,7 +24,6 @@ public class CallbackTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
@@ -58,8 +57,8 @@ public class CallbackTest {
         form.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79270000000");
         form.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         form.findElement(By.cssSelector("[data-test-id=submit]")).click();
-       String text = driver.findElement(By.className("[data-test-id=order-success]")).getText();
-       assertEquals("Ваша заявка успешно отправлена!", text.trim());
-     }
+        String text = driver.findElement(By.className("[data-test-id=order-success]")).getText();
+        assertEquals("Ваша заявка успешно отправлена!", text.trim());
+    }
 }
 
