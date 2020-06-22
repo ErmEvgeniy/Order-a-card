@@ -25,9 +25,8 @@ public class CallbackTest {
     @BeforeEach
     void setUp() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-
+        driver = new ChromeDriver(options);
     }
 
 
